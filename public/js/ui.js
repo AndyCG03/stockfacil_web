@@ -56,6 +56,7 @@
     'Este espacio está preparado para mostrar una fotografía real de StockFácil funcionando en el mostrador.': 'This space is ready for a real photo of StockFácil running at the counter.',
     'Fotografía próximamente': 'Photo coming soon',
     'Obtener clave de acceso': 'Get an access key',
+    'Solicitar por WhatsApp': 'Request via WhatsApp',
   };
   const originals = [];
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
