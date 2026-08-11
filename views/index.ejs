@@ -28,10 +28,31 @@
       <div class="nav__tools">
         <button class="ui-tool" type="button" data-language-toggle aria-label="Cambiar idioma">EN</button>
         <button class="ui-tool" type="button" data-theme-toggle aria-label="Cambiar tema">☾</button>
+        <button class="ui-tool mobile-menu-toggle" type="button" data-menu-open aria-label="Abrir menú" aria-expanded="false">☰</button>
         <a href="https://wa.me/5355847601?text=Hola%2C%20quiero%20solicitar%20una%20clave%20de%20acceso%20para%20StockF%C3%A1cil." target="_blank" rel="noopener noreferrer" class="nav__cta">Pedir clave de acceso</a>
       </div>
     </div>
   </nav>
+
+  <div class="mobile-menu-backdrop" data-menu-close></div>
+  <aside class="mobile-menu" aria-label="Navegación móvil" aria-hidden="true">
+    <div class="mobile-menu__header">
+      <div class="footer__brand"><img src="/img/logo.png" alt="StockFácil" /></div>
+      <button class="ui-tool" type="button" data-menu-close aria-label="Cerrar menú">×</button>
+    </div>
+    <nav class="mobile-menu__nav">
+      <a href="#como-funciona"><span>01</span>Cómo funciona</a>
+      <a href="#funciones"><span>02</span>Funciones</a>
+      <a href="#vista"><span>03</span>La aplicación</a>
+      <a href="#descargar"><span>04</span>Descargar</a>
+      <a href="/manual"><span>05</span>Manual de usuario</a>
+    </nav>
+    <div class="mobile-menu__legal">
+      <a href="/privacidad">Privacidad</a>
+      <a href="/terminos">Términos</a>
+    </div>
+    <a class="btn btn--primary mobile-menu__cta" href="https://wa.me/5355847601?text=Hola%2C%20quiero%20solicitar%20una%20clave%20de%20acceso%20para%20StockF%C3%A1cil." target="_blank" rel="noopener noreferrer">Solicitar clave</a>
+  </aside>
 
   <header class="hero">
     <div class="wrap hero__grid">
@@ -56,15 +77,19 @@
         <div class="scanner__logo-card">
           <span class="scanner__logo-glow"></span>
           <img src="/img/logo.png" alt="" />
-          <span class="scanner__logo-label">StockFácil</span>
         </div>
         <div class="scanner__frame">
           <div class="scanner__corner tl"></div>
           <div class="scanner__corner tr"></div>
           <div class="scanner__corner bl"></div>
           <div class="scanner__corner br"></div>
-          <div class="scanner__bars">
-            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          <div class="scanner__store-icon">
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+              <path d="M12 28v25h40V28" />
+              <path d="M9 26 14 11h36l5 15" />
+              <path d="M9 26c0 5 8 7 12 1 3 6 10 6 13 0 3 6 10 6 13 0 4 6 12 4 8-1" />
+              <path d="M25 53V39h14v14M18 35h5M43 35h5" />
+            </svg>
           </div>
           <div class="scanner__line"></div>
         </div>
@@ -246,13 +271,20 @@
   </section>
 
   <footer>
-    <div class="wrap footer__inner">
-      <div class="footer__brand">
-        <img src="/img/logo.png" alt="StockFácil" />
-        StockFácil
+    <div class="wrap">
+      <nav class="footer__legal" aria-label="Información legal y ayuda">
+        <a href="/manual">Manual de usuario</a>
+        <a href="/privacidad">Privacidad</a>
+        <a href="/terminos">Términos de uso</a>
+      </nav>
+      <div class="footer__inner">
+        <div class="footer__brand"><img src="/img/logo.png" alt="StockFácil" />StockFácil</div>
+        <p class="footer__note">Inventario y ventas, sin internet.</p>
+        <div class="footer__links">
+          <a href="https://devisisoft.com" target="_blank" rel="noopener noreferrer">Desarrollado por Devisi</a>
+          <a href="/admin" class="footer__admin-link">Panel de administración →</a>
+        </div>
       </div>
-      <p class="footer__note">Inventario y ventas, sin internet.</p>
-      <a href="/admin" class="footer__admin-link">Panel de administración →</a>
     </div>
   </footer>
 

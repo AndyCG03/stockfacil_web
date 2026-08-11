@@ -11,4 +11,8 @@ router.get('/', (req, res) => {
   });
 });
 
+router.get('/privacidad', (req, res) => res.render('privacy', { titulo: 'Privacidad — StockFácil' }));
+router.get('/terminos', (req, res) => res.render('terms', { titulo: 'Términos de uso — StockFácil' }));
+router.get('/manual', (req, res) => res.render('manual', { titulo: 'Manual de usuario — StockFácil' }));
+
 module.exports = router;

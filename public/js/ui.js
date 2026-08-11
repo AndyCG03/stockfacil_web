@@ -2,6 +2,9 @@
   const root = document.documentElement;
   const themeButtons = document.querySelectorAll('[data-theme-toggle]');
   const languageButtons = document.querySelectorAll('[data-language-toggle]');
+  const menu = document.querySelector('.mobile-menu');
+  const menuOpenButton = document.querySelector('[data-menu-open]');
+  const menuCloseButtons = document.querySelectorAll('[data-menu-close], .mobile-menu a');
   const dictionary = {
     'Cómo funciona': 'How it works', 'Funciones': 'Features', 'La app': 'The app',
     'Pedir clave de acceso': 'Request access key', 'Pedir mi clave de acceso': 'Request my access key',
@@ -65,6 +68,8 @@
     'Android puede solicitar permiso para instalar aplicaciones desde esta fuente.': 'Android may ask for permission to install applications from this source.',
     'Descarga el APK oficial, instala la aplicación y actívala con la clave que recibas por WhatsApp.': 'Download the official APK, install the application, and activate it with the key you receive via WhatsApp.',
     'Versión': 'Version',
+    'La aplicación': 'The application', 'Manual de usuario': 'User manual',
+    'Privacidad': 'Privacy', 'Términos': 'Terms', 'Solicitar clave': 'Request key',
   };
   const originals = [];
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
@@ -97,6 +102,16 @@
 
   themeButtons.forEach((button) => button.addEventListener('click', () => theme(root.dataset.theme === 'dark' ? 'light' : 'dark')));
   languageButtons.forEach((button) => button.addEventListener('click', () => language(root.lang === 'en' ? 'es' : 'en')));
+
+  function setMenu(open) {
+    document.body.classList.toggle('menu-open', open);
+    menu?.setAttribute('aria-hidden', String(!open));
+    menuOpenButton?.setAttribute('aria-expanded', String(open));
+  }
+  menuOpenButton?.addEventListener('click', () => setMenu(true));
+  menuCloseButtons.forEach((element) => element.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') setMenu(false); });
+
   theme(root.dataset.theme || 'light');
   language(localStorage.getItem('language') || 'es');
 })();
