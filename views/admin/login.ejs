@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= titulo %></title>
+  <link rel="icon" href="/img/logo.png" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/landing.css" />
+  <link rel="stylesheet" href="/css/admin.css" />
+  <script>document.documentElement.classList.add('js');</script>
+  <script>document.documentElement.dataset.theme=localStorage.getItem('theme')||'light';</script>
+</head>
+<body class="admin">
+  <div class="ui-tools login-tools">
+    <button class="ui-tool" type="button" data-language-toggle aria-label="Cambiar idioma">EN</button>
+    <button class="ui-tool" type="button" data-theme-toggle aria-label="Cambiar tema">☾</button>
+  </div>
+  <div class="login-screen">
+    <div class="login-card">
+      <div class="login-card__logo">
+        <img src="/img/logo.png" alt="StockFácil" />
+      </div>
+      <h1>Administración StockFácil</h1>
+      <p class="subtitle">Ingresa para generar y gestionar claves de acceso</p>
+
+      <% if (error) { %>
+        <div class="alert alert--error"><%= error %></div>
+      <% } %>
+
+      <form method="POST" action="/admin/login">
+        <div class="field">
+          <label for="username">Usuario</label>
+          <input type="text" id="username" name="username" autocomplete="username" required autofocus />
+        </div>
+        <div class="field">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" name="password" autocomplete="current-password" required />
+        </div>
+        <button type="submit" class="btn btn--violet btn-block">Ingresar</button>
+      </form>
+    </div>
+  </div>
+  <script src="/js/motion.js" defer></script>
+  <script src="/js/ui.js" defer></script>
+</body>
+</html>

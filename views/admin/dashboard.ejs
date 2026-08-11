@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= titulo %></title>
+  <link rel="icon" href="/img/logo.png" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/landing.css" />
+  <link rel="stylesheet" href="/css/admin.css" />
+  <script>document.documentElement.classList.add('js');</script>
+  <script>document.documentElement.dataset.theme=localStorage.getItem('theme')||'light';</script>
+</head>
+<body class="admin">
+
+  <div class="admin-topbar">
+    <div class="admin-topbar__inner">
+      <div class="admin-topbar__brand">
+        <img src="/img/logo.png" alt="StockFácil" />
+        Administración
+      </div>
+      <div class="admin-topbar__right">
+        <span>Hola, <%= adminUsername %></span>
+        <div class="ui-tools">
+          <button class="ui-tool" type="button" data-language-toggle aria-label="Cambiar idioma">EN</button>
+          <button class="ui-tool" type="button" data-theme-toggle aria-label="Cambiar tema">☾</button>
+        </div>
+        <form method="POST" action="/admin/logout">
+          <button type="submit" class="admin-topbar__logout">Cerrar sesión</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-content">
+    <h1>Claves de acceso</h1>
+    <p class="subtitle">Genera claves para quienes quieran usar StockFácil.</p>
+
+    <% if (mensaje) { %>
+      <div class="alert alert--success"><%= mensaje %></div>
+    <% } %>
+
+    <div class="stat-grid">
+      <div class="stat-card total">
+        <div class="stat-card__value"><%= stats.total %></div>
+        <div class="stat-card__label">Total generadas</div>
+      </div>
+      <div class="stat-card disponible">
+        <div class="stat-card__value"><%= stats.disponibles %></div>
+        <div class="stat-card__label">Disponibles</div>
+      </div>
+      <div class="stat-card entregada">
+        <div class="stat-card__value"><%= stats.entregadas %></div>
+        <div class="stat-card__label">Entregadas</div>
+      </div>
+      <div class="stat-card activada">
+        <div class="stat-card__value"><%= stats.activadas %></div>
+        <div class="stat-card__label">Activadas</div>
+      </div>
+      <div class="stat-card revocada">
+        <div class="stat-card__value"><%= stats.revocadas %></div>
+        <div class="stat-card__label">Revocadas</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Generar nuevas claves</h2>
+      <p class="hint">Cada clave tiene el formato SF-XXXX-XXXX y es única. Puedes generar varias a la vez.</p>
+      <form class="generate-form" method="POST" action="/admin/claves/generar">
+        <div class="field field--cantidad">
+          <label for="cantidad">Cantidad</label>
+          <input type="number" id="cantidad" name="cantidad" min="1" max="100" value="1" required />
+        </div>
+        <div class="field field--nota">
+          <label for="nota">Nota (opcional)</label>
+          <input type="text" id="nota" name="nota" placeholder="Ej. Kiosco de Marta" />
+        </div>
+        <button type="submit" class="btn btn--violet">Generar clave(s)</button>
+      </form>
+    </div>
+
+    <div class="panel api-docs">
+      <div>
+        <h2>API de activación</h2>
+        <p class="hint">La aplicación debe enviar una API key disponible. Una activación correcta cambia su estado a activada y la clave no puede reutilizarse.</p>
+        <div class="api-docs__endpoint"><span class="api-docs__method">POST</span><span>/api/activate</span></div>
+        <p class="hint">Respuestas: 200 activada · 404 inexistente · 409 no disponible.</p>
+      </div>
+      <pre><code>{
+  "apiKey": "SF-XXXX-XXXX"
+}</code></pre>
+    </div>
+
+    <div class="table-wrap">
+      <% if (claves.length === 0) { %>
+        <div class="table-empty">Todavía no has generado ninguna clave. Usa el formulario de arriba para crear la primera.</div>
+      <% } else { %>
+        <table>
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Nota</th>
+              <th>Creada</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% claves.forEach(clave => { %>
+              <tr>
+                <td>
+                  <span class="codigo" id="codigo-<%= clave.id %>"><%= clave.codigo %></span>
+                  <button class="copy-btn" onclick="copiarCodigo('<%= clave.id %>')">Copiar</button>
+                </td>
+                <td><%= clave.nota || '—' %></td>
+                <td><%= new Date(clave.creadaEl).toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric' }) %></td>
+                <td><span class="badge badge--<%= clave.estado %>"><%= clave.estado %></span></td>
+                <td>
+                  <div class="row-actions">
+                    <form method="POST" action="/admin/claves/<%= clave.id %>/estado">
+                      <select name="estado" onchange="this.form.submit()">
+                        <option value="disponible" <%= clave.estado === 'disponible' ? 'selected' : '' %>>Disponible</option>
+                        <option value="entregada" <%= clave.estado === 'entregada' ? 'selected' : '' %>>Entregada</option>
+                        <option value="activada" <%= clave.estado === 'activada' ? 'selected' : '' %>>Activada</option>
+                        <option value="revocada" <%= clave.estado === 'revocada' ? 'selected' : '' %>>Revocada</option>
+                      </select>
+                    </form>
+                    <form method="POST" action="/admin/claves/<%= clave.id %>/eliminar" onsubmit="return confirm('¿Eliminar esta clave? No se puede deshacer.');">
+                      <button type="submit" class="icon-btn">Eliminar</button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } %>
+    </div>
+  </div>
+
+  <script>
+    function copiarCodigo(id) {
+      const texto = document.getElementById('codigo-' + id).textContent;
+      navigator.clipboard.writeText(texto);
+    }
+  </script>
+  <script src="/js/motion.js" defer></script>
+  <script src="/js/ui.js" defer></script>
+</body>
+</html>
