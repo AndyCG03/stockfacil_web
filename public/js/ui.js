@@ -57,6 +57,13 @@
     'Fotografía próximamente': 'Photo coming soon',
     'Obtener clave de acceso': 'Get an access key',
     'Solicitar por WhatsApp': 'Request via WhatsApp',
+    'Descargar': 'Download', 'Aplicación Android': 'Android application',
+    'Lleva StockFácil contigo': 'Take StockFácil with you',
+    'Descargar APK para Android': 'Download APK for Android',
+    'Descarga próximamente': 'Download coming soon',
+    'Android puede solicitar permiso para instalar aplicaciones desde esta fuente.': 'Android may ask for permission to install applications from this source.',
+    'Descarga el APK oficial, instala la aplicación y actívala con la clave que recibas por WhatsApp.': 'Download the official APK, install the application, and activate it with the key you receive via WhatsApp.',
+    'Versión': 'Version',
   };
   const originals = [];
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);

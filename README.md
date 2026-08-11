@@ -33,6 +33,19 @@ npm start
 - Sitio público: http://localhost:3000
 - Panel de administración: http://localhost:3000/admin
 
+## Descarga de la aplicación Android
+
+La landing incluye una sección preparada para distribuir el APK. Configura estas variables en `.env` cuando tengas una versión firmada:
+
+```env
+ANDROID_APK_URL=https://github.com/usuario/repositorio/releases/download/v1.0.0/stockfacil.apk
+ANDROID_APP_VERSION=1.0.0
+ANDROID_APK_SIZE=24 MB
+ANDROID_APK_SHA256=hash_sha256_del_archivo
+```
+
+Si `ANDROID_APK_URL` está vacío, la web muestra el botón desactivado “Descarga próximamente”.
+
 ## Cómo funciona la generación de claves
 
 1. Entra a `/admin` con el usuario y contraseña definidos en `.env`.

@@ -23,6 +23,7 @@
         <li><a href="#como-funciona">Cómo funciona</a></li>
         <li><a href="#funciones">Funciones</a></li>
         <li><a href="#vista">La app</a></li>
+        <li><a href="#descargar">Descargar</a></li>
       </ul>
       <div class="nav__tools">
         <button class="ui-tool" type="button" data-language-toggle aria-label="Cambiar idioma">EN</button>
@@ -216,6 +217,30 @@
             loading="lazy"
             alt="StockFácil funcionando en un dispositivo móvil"
           />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="descargar" class="download-section">
+    <div class="wrap">
+      <div class="download-card">
+        <div class="download-card__icon" aria-hidden="true">↓</div>
+        <div class="download-card__body">
+          <p class="section__eyebrow">Aplicación Android</p>
+          <h2 class="section__title">Lleva StockFácil contigo</h2>
+          <p class="section__lead">Descarga el APK oficial, instala la aplicación y actívala con la clave que recibas por WhatsApp.</p>
+          <div class="download-card__meta">
+            <span>Versión <strong><%= appVersion %></strong></span>
+            <span><strong><%= appSize %></strong></span>
+          </div>
+          <% if (appDownloadUrl) { %>
+            <a class="btn btn--primary" href="<%= appDownloadUrl %>" target="_blank" rel="noopener noreferrer">Descargar APK para Android</a>
+          <% } else { %>
+            <span class="btn btn--primary btn--disabled" aria-disabled="true">Descarga próximamente</span>
+          <% } %>
+          <p class="download-card__note">Android puede solicitar permiso para instalar aplicaciones desde esta fuente.</p>
+          <% if (appSha256) { %><code class="download-card__hash">SHA-256: <%= appSha256 %></code><% } %>
         </div>
       </div>
     </div>

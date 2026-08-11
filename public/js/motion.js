@@ -6,7 +6,7 @@
     ['.scanner', 'reveal reveal--right'],
     ['.section__eyebrow, .section__title, .section__lead', 'reveal'],
     ['.step, .feature, .stat-card', 'reveal'],
-    ['.app-preview, .cta-final, .photo-frame, .panel, .table-wrap', 'reveal reveal--scale'],
+    ['.app-preview, .cta-final, .photo-frame, .download-card, .panel, .table-wrap', 'reveal reveal--scale'],
     ['.admin-content > h1, .admin-content > .subtitle, .alert', 'reveal'],
   ];
 
