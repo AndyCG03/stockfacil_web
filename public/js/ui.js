@@ -54,6 +54,7 @@
     'StockFácil en acción': 'StockFácil in action',
     'Tu negocio bajo control, desde un solo lugar': 'Your business under control, from one place',
     'Este espacio está preparado para mostrar una fotografía real de StockFácil funcionando en el mostrador.': 'This space is ready for a real photo of StockFácil running at the counter.',
+    'Instala StockFácil en tu dispositivo Android y gestiona inventario y ventas directamente desde el mostrador.': 'Install StockFácil on your Android device and manage inventory and sales directly from the counter.',
     'Fotografía próximamente': 'Photo coming soon',
     'Obtener clave de acceso': 'Get an access key',
     'Solicitar por WhatsApp': 'Request via WhatsApp',

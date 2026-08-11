@@ -868,6 +868,21 @@ section {
 
 .photo-showcase__copy .section__lead { margin-bottom: 0; }
 
+.photo-showcase__download {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.photo-showcase__version {
+  color: var(--ink-soft);
+  font: 12px var(--font-mono);
+}
+
+.photo-showcase__version strong { color: var(--ink); }
+
 .photo-frame {
   width: min(100%, 320px);
   aspect-ratio: 596 / 842;
@@ -890,38 +905,6 @@ section {
 }
 .mobile-key-cta { display: none; }
 
-.download-section { padding-top: 24px; }
-
-.download-card {
-  display: grid;
-  grid-template-columns: 72px minmax(0, 1fr);
-  gap: 24px;
-  align-items: start;
-  padding: 36px;
-  border: 1px solid var(--border);
-  border-radius: var(--r-xl);
-  background: var(--surface);
-  box-shadow: var(--shadow-card);
-}
-
-.download-card__icon {
-  width: 64px;
-  height: 64px;
-  display: grid;
-  place-items: center;
-  border-radius: 18px;
-  color: #fff;
-  background: var(--teal);
-  box-shadow: 0 12px 28px rgba(14, 124, 123, 0.24);
-  font-size: 34px;
-}
-
-.download-card .section__title { margin-bottom: 10px; }
-.download-card .section__lead { margin-bottom: 18px; }
-.download-card__meta { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 20px; color: var(--ink-soft); font: 12px var(--font-mono); }
-.download-card__meta strong { color: var(--ink); }
-.download-card__note { margin: 14px 0 0; color: var(--ink-soft); font-size: 12px; }
-.download-card__hash { display: block; margin-top: 10px; overflow-wrap: anywhere; color: var(--ink-soft); font-size: 11px; }
 .btn--disabled { cursor: not-allowed; opacity: 0.56; pointer-events: none; }
 
 .cta-final::before,
@@ -965,8 +948,7 @@ section {
   .mock-card { height: 82px; padding: 10px; }
   .mock-tablet__cart { border-left: 0; border-top: 1px solid var(--border); padding: 14px; min-height: 190px; }
   .cta-final { padding: 44px 20px; }
-  .download-card { grid-template-columns: 1fr; padding: 24px 20px; }
-  .download-card__icon { width: 52px; height: 52px; border-radius: 15px; font-size: 28px; }
+  .photo-showcase__download { align-items: center; }
   .footer__inner { flex-direction: column; text-align: center; }
   body { padding-bottom: 78px; }
   .photo-showcase {
